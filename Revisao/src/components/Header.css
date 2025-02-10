@@ -1,0 +1,24 @@
+.container-header {
+    background-color: rgb(255, 255, 254);
+    height: 85px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 25px;
+}
+
+.Logo {
+    height: 5rem;
+    width: auto;
+}
+
+p{
+    height: 50px;
+    width: 151px;
+    background-color: antiquewhite;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
