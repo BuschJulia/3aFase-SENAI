@@ -1,0 +1,82 @@
+.container-jogar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.area-imagens {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.imagens-geradas {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.dado-rolando {
+  width: 100px;
+  height: 100px;
+  animation: girar 1s ease-out;
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.timer {
+  text-align: center;
+}
+
+.botao-gerar {
+  font-family: "Niramit-Bold", sans-serif;
+  font-size: 18px;
+  background-color: #FFDD00;
+  color: #0f0f0f;
+  border-radius: 3rem;
+  border: none;
+  padding: 16.8px 32px;
+  margin: 3rem;
+  cursor: pointer;
+  font-weight: lighter;
+}
+
+.botao-jogar{
+  font-family: "Niramit", sans-serif;
+  color: #0f0f0f;
+  font-size: 48px;
+  margin-bottom: 1rem;
+}
+
+.botao-jogar,
+.botao-gerar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.historico {
+  margin-top: 30px;
+}
+
+.historico-imagens {
+  display: flex;
+  gap: 10px;
+}
+
+.imagem-historico {
+  width: 50px;
+  height: 50px;
+}

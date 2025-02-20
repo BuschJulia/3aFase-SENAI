@@ -1,0 +1,56 @@
+/* src/pages/OQueE.css */
+.container-o-que-e {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .botaozinho {
+    font-family: 'Niramit-Bold', sans-serif;
+    color: #0f0f0f;
+    padding: 12px 24px;
+    border-radius: 3rem;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .botaozinho {
+  }
+  
+
+/* Título principal */
+.container-o-que-e h1 {
+    color: #FFDD00;
+    font-size: 48px;
+    margin-bottom: 1rem;
+}
+
+/* Parágrafo de introdução */
+.container-o-que-e p {
+    font-size: 18px;
+    margin-bottom: 2rem;
+    color: #fff5f5;
+}
+
+/* Detalhes do funcionamento do jogo */
+.detalhes {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo claro e levemente transparente */
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detalhes h2 {
+    font-size: 24px;
+    color: #534600; /* Cor dourada para subtítulo */
+    margin-bottom: 1rem;
+}
+
+.detalhes p {
+    font-size: 16px;
+    color: #333;
+}
+

@@ -1,0 +1,67 @@
+body {
+    background-color: #ff6f00; 
+    margin: 0;
+    padding: 0;
+    height: 100vh; 
+}
+
+.container-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0; 
+    animation: fadeInUp 1s ease-out forwards; 
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 2rem); 
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%); 
+    }
+}
+
+h1 {
+    font-family: "Niramit", sans-serif;
+    color: #FFDD00;
+    font-size: 48px;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-family: "Niramit", sans-serif;
+    color: #F9EAD7;
+    font-size: 18px;
+    margin-bottom: 2rem;
+}
+
+.play-button {
+    font-family: "Niramit-Bold", sans-serif;
+    font-size: 18px;
+    background-color: #FFDD00;
+    color: #0f0f0f;
+    border-radius: 3rem;
+    border: none;
+    padding: 16.8px 32px;
+    cursor: pointer;
+    font-weight: lighter;
+    transition: 0.3s;
+    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.181);}
+
+.play-button:hover {
+    background-color: #FFD700;
+}
+
+.Cubos {
+    width: 850px; 
+    margin-bottom: 2rem;
+}
