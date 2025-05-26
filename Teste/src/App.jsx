@@ -3,10 +3,33 @@ import './App.css';
 import Sidebar from './components/Sidebar';
 import IconeUpload from './assets/images/icone-upload.svg';
 import Logo from './assets/images/Logo.svg';
+import Lupa from './assets/images/Lupa.svg';
+import IconeAcessibilidade from './assets/images/Acessibilidade.svg';
+import IconeAcessibilidadeAtivo from './assets/images/AcessibilidadeRoxo.svg';
 
 function App() {
   const [tipoEvento, setTipoEvento] = useState('presencial');
   const [abaAtiva, setAbaAtiva] = useState("Informações Básicas");
+  const [termoBusca, setTermoBusca] = useState("");
+  const [acessibilidadesSelecionadas, setAcessibilidadesSelecionadas] = useState([]);
+  const [acessPersonalizadas, setAcessPersonalizadas] = useState([]);
+  const [novaAcessibilidade, setNovaAcessibilidade] = useState("");
+
+  function toggleAcessibilidade(id) {
+    setAcessibilidadesSelecionadas((prevSelecionadas) =>
+      prevSelecionadas.includes(id)
+        ? prevSelecionadas.filter((item) => item !== id)
+        : [...prevSelecionadas, id]
+    );
+  }
+
+  function adicionarAcessibilidadePersonalizada() {
+    if (novaAcessibilidade.trim() !== "") {
+      setAcessPersonalizadas([...acessPersonalizadas, novaAcessibilidade.trim()]);
+      setNovaAcessibilidade("");
+    }
+  }
+
 
   return (
     <div className="container-pagina">
@@ -33,7 +56,8 @@ function App() {
           {abaAtiva === "Informações Básicas" && (
             <div className="conteudo-interno">
               <form className="formulario-evento">
-                {/* Principal */}
+
+                {/* PRINCIPAL */}
                 <h2>Principal</h2>
                 <section className="grupo-principal">
                   <label htmlFor="nome-evento">
@@ -173,27 +197,132 @@ function App() {
           {abaAtiva === "Acessibilidade" && (
             <div className="conteudo-interno">
               <section className="secao-acessibilidade">
-                <h2>Inclua recursos de acessibilidade</h2>
-                <p className="subtitulo">Selecione os recursos disponíveis no seu evento</p>
+                <h2>Acessibilidades Disponíveis</h2>
+                <p className="subtitulo">
+                  Selecione as opções de acessibilidade disponíveis no seu evento. Isso ajudará pessoas com necessidades específicas a encontrar eventos adequados para elas.
+                </p>
+
+                <div className="search-container">
+                  <img className="lupa-searchbar" src={Lupa} alt="Ícone de lupa" />
+                  <input
+                    type="search"
+                    id="search-acessibilidade"
+                    className="input-pesquisa"
+                    placeholder="Buscar acessibilidade..."
+                    value={termoBusca}
+                    onChange={(e) => setTermoBusca(e.target.value)}
+                  />
+                </div>
 
                 <div className="grupo-opcoes">
-                  <label className="opcao-acessibilidade">
-                    <input type="checkbox" />
-                    Acesso para cadeirantes
-                  </label>
-                  <label className="opcao-acessibilidade">
-                    <input type="checkbox" />
-                    Banheiro adaptado
-                  </label>
-                  <label className="opcao-acessibilidade">
-                    <input type="checkbox" />
-                    Atendimento em Libras
-                  </label>
-                  <label className="opcao-acessibilidade">
-                    <input type="checkbox" />
-                    Área reservada para PCDs
-                  </label>
+                  {[
+                    {
+                      id: 1,
+                      titulo: 'Banheiro adaptado',
+                      descricao: 'Sanitários acessíveis para cadeirantes e pessoas com mobilidade reduzida.',
+                      icone: IconeAcessibilidade,
+                      iconeAtivo: IconeAcessibilidadeAtivo
+                    },
+                    {
+                      id: 2,
+                      titulo: 'Atendimento em Libras',
+                      descricao: 'Tradutores de Libras disponíveis durante todo o evento.',
+                      icone: IconeAcessibilidade,
+                      iconeAtivo: IconeAcessibilidadeAtivo
+                    },
+                    {
+                      id: 3,
+                      titulo: 'Área reservada para PCDs',
+                      descricao: 'Espaço exclusivo próximo ao palco com acesso facilitado.',
+                      icone: IconeAcessibilidade,
+                      iconeAtivo: IconeAcessibilidadeAtivo
+                    },
+                    {
+                      id: 4,
+                      titulo: 'Áudio descrição',
+                      descricao: 'Recursos de narração para pessoas com deficiência visual.',
+                      icone: IconeAcessibilidade,
+                      iconeAtivo: IconeAcessibilidadeAtivo
+                    },
+                    {
+                      id: 5,
+                      titulo: 'Material em braile',
+                      descricao: 'Informações impressas em braile disponíveis na entrada.',
+                      icone: IconeAcessibilidade,
+                      iconeAtivo: IconeAcessibilidadeAtivo
+                    },
+                    {
+                      id: 6,
+                      titulo: 'Cão-guia permitido',
+                      descricao: 'Espaço pet friendly para cães-guia acompanharem seus donos.',
+                      icone: IconeAcessibilidade,
+                      iconeAtivo: IconeAcessibilidadeAtivo
+                    }
+                  ]
+
+                    .filter((opcao) =>
+                      opcao.titulo.toLowerCase().includes(termoBusca.toLowerCase())
+                    )
+                    .map((opcao) => {
+                      const selecionado = acessibilidadesSelecionadas.includes(opcao.id);
+                      return (
+                        <label
+                          key={opcao.id}
+                          className={`opcao-acessibilidade ${selecionado ? "selecionado" : ""}`}
+                          onClick={() => toggleAcessibilidade(opcao.id)}
+                        >
+                          <input
+                            type="checkbox"
+                            className="checkbox-acessibilidade"
+                            checked={selecionado}
+                            onChange={() => toggleAcessibilidade(opcao.id)}
+                          />
+                          <div className={`icone-wrapper ${selecionado ? "ativo" : ""}`}>
+                            <img
+                              src={selecionado ? opcao.iconeAtivo : opcao.icone}
+                              alt={`Ícone para ${opcao.titulo}`}
+                            />
+                          </div>
+                          <div className="texto-acessibilidade">
+                            <strong className="titulo-opcao">{opcao.titulo}</strong>
+                            <span className="descricao-opcao">{opcao.descricao}</span>
+                          </div>
+                        </label>
+                      );
+                    })}
                 </div>
+
+                <section className="secao-acessibilidade">
+                  <h2>Acessibilidades Personalizadas</h2>
+
+                  <div className="area-personalizada">
+                    {acessPersonalizadas.length === 0 ? (
+                      <div className="card-vazio">Nenhuma acessibilidade adicionada</div>
+                    ) : (
+                      <ul className="lista-personalizada">
+                        {acessPersonalizadas.map((item, index) => (
+                          <li key={index} className="item-personalizado">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    <div className="linha-personalizada">
+                      <input
+                        type="text"
+                        className="input-personalizado"
+                        placeholder="Descreva uma acessibilidade..."
+                        value={novaAcessibilidade}
+                        onChange={(e) => setNovaAcessibilidade(e.target.value)}
+                      />
+                      <button className="botao-adicionar" onClick={adicionarAcessibilidadePersonalizada}>
+                        + Adicionar
+                      </button>
+                    </div>
+                  </div>
+                </section>
+
               </section>
             </div>
           )}
