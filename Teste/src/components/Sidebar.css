@@ -1,0 +1,70 @@
+.sidebar {
+    width: 240px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 16px;
+    font-weight: bold;
+    color: #574cd5; /* roxo-principal-600 */
+    border-bottom: 1px solid #D1D5DB; /* cinza-principal-300 */
+    font-size: 24px;
+}
+
+.sidebar-nav,
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow-x: auto;
+    color: #1E3A8A; /* azul-principal-950 */
+    transition: background 0.3s, border 0.3s;
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    border-color: #574cd5; /* roxo-principal-600 */
+}
+
+.nav-item.active {
+    background-color: #574cd5; /* roxo-principal-600 */
+    color: white;
+    font-weight: 600;
+}
+
+.delete-account {
+    color: #DC2626; /* red-600 */
+    border: 1px solid #DC2626;
+}
+
+.delete-account:hover {
+    background-color: #FEE2E2; /* red-100 */
+    border-color: #DC2626;
+}
+
+.logout {
+    color: #574cd5; /* roxo-principal-600 */
+    border: 1px solid #574cd5;
+}
+
+.logout:hover {
+    background-color: #EDE9FE; /* roxo-principal-100 */
+    border-color: #574cd5;
+}
