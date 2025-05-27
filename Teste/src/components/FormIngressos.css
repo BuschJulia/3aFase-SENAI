@@ -1,0 +1,159 @@
+.form-ingressos {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    font-family: Poppins, sans-serif;
+  }
+  
+  .cabecalho-ingressos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .botoes-tipo-ingresso {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .botao-pago,
+  .botao-gratuito {
+    padding: 10px 16px;
+    border: 1px solid #574cd5;
+    background: none;
+    color: #574cd5;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .botao-pago:hover,
+  .botao-gratuito:hover {
+    background-color: #f0eeff;
+  }
+  
+  .tabela-ingressos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    color: #051b44;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .tabela-ingressos th,
+  .tabela-ingressos td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #e4e6ec;
+  }
+  
+  .barra-progresso {
+    height: 6px;
+    background-color: #f3f4f6;
+    border-radius: 3px;
+    margin-top: 4px;
+    position: relative;
+    width: 100px;
+  }
+  
+  .barra-preenchida {
+    height: 6px;
+    background-color: #574cd5;
+    border-radius: 3px;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #574cd5;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+  
+  .texto-visivel {
+    font-weight: 600;
+    margin-left: 8px;
+    font-size: 14px;
+  }
+  
+  .texto-visivel.visivel {
+    color: #574cd5;
+  }
+  
+  .texto-visivel.oculto {
+    color: #717582;
+  }
+  
+  .acoes button {
+    background: none;
+    border: none;
+    color: #717582;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  
+  .navegacao-ingressos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .botao-anterior,
+  .botao-proximo {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .botao-anterior.amarelo {
+    background-color: #fbbc04;
+    color: white;
+  }
+  
+  .botao-proximo.roxo {
+    background-color: #574cd5;
+    color: white;
+  }
+  
