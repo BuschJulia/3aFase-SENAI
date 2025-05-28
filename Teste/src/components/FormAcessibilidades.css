@@ -1,0 +1,172 @@
+.modal {
+    background: white;
+    padding: 32px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .modal h2 {
+    margin-bottom: 10px;
+    color: #051B44;
+    font-size: 20px;
+  }
+  
+  .modal label {
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .input-acessibilidade,
+  .input-acessibilidade2 {
+    width: 100%;
+    border: 2px solid #5555552c;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: Poppins;
+    font-size: 14px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  .input-acessibilidade2 {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  .botoes-modal {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .btn-cancelar,
+  .btn-adicionar {
+    height: 43px;
+    padding: 0 20px;
+    border-radius: 8px;
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 450;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-cancelar {
+    background-color: #FFA500;
+    color: white;
+  }
+  
+  .btn-adicionar {
+    background-color: #574CD5;
+    color: white;
+  }
+  
+  .btn-cancelar:hover {
+    background-color: #e09e00;
+  }
+  
+  .btn-adicionar:hover {
+    background-color: #4b3bc9;
+  }
+  
+  .fechar-modal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* ========== CARDS PERSONALIZADOS ========== */
+  
+  .lista-personalizada {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .item-personalizado {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .card-personalizado {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px #DCE0E6;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+    cursor: default;
+  }
+  
+  .card-personalizado:hover {
+    box-shadow: 0 0 0 2px #574CD5;
+    background-color: #F2F2FA;
+  }
+  
+  .icone-acess {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .card-personalizado > div:nth-child(2) {
+    flex: 1;
+  }
+  
+  .item-personalizado strong {
+    font-size: 16px;
+    color: #051B44;
+  }
+  
+  .item-personalizado p {
+    font-size: 14px;
+    color: #4F5B76;
+    margin-top: 4px;
+  }
+  
+  .botoes-card {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .btn-editar,
+  .btn-deletar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #574CD5;
+    padding: 6px;
+    transition: background 0.2s ease, border-radius 0.2s ease;
+  }
+  
+  .btn-editar:hover,
+  .btn-deletar:hover {
+    background-color: #F2F2FA;
+    border-radius: 6px;
+  }
+
+  .opcao-acessibilidade.personalizado {
+    width: 97.75%;
+    max-width: none;
+  }

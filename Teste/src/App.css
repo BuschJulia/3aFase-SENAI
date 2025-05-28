@@ -52,17 +52,15 @@
 
 .conteudo {
   flex: 1;
-  padding: 20px 40px 40px 40px;
-  ;
-  background: #F3F4F6;
-  ;
+  padding: 30px 63px;;
+  background: #F3F4F6;;
   flex-direction: column;
   gap: 30px;
   min-height: 100vh;
 }
 
 .conteudo-interno {
-  padding: 10px;
+  padding:  10px 10px;
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -71,7 +69,7 @@
 
 .conteudo-evento {
   width: 100%;
-  max-width: 1500px;
+  max-width: 1512px;
   min-height: 500px;
   border-radius: 8px;
   border: 1px solid #E4E6EC;
@@ -90,7 +88,6 @@
   padding: 4px 0px;
   flex-wrap: wrap;
 }
-
 
 .aba {
   flex: 1 1 150px;
@@ -419,6 +416,7 @@ label {
   border: none;
   outline: none;
   flex: 1;
+  font-family: Poppins;
   font-size: 14px;
   color: #051B44;
 }
@@ -607,7 +605,6 @@ label {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 24px;
   cursor: pointer;
   position: relative;
   transition: background-color 0.2s ease;
@@ -657,11 +654,13 @@ label {
 }
 
 .comprovacao-acessibilidade .subtitulo {
-  font-size: 16px;
-  font-weight: 500;
-  color: #717582;
-  margin-top: -12px;
-  margin-bottom: -8px;
+    margin-top: 5px;
+    color: #717582;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .comprovacao-acessibilidade ul {
@@ -682,4 +681,50 @@ label {
 
 .upload-comprovante {
   margin-top: 12px;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.botoes-modal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.botoes-modal .cancelar {
+  background: #fbbf24;
+}
+
+.botoes-modal .adicionar {
+  background: #6d28d9;
+  color: white;
 }

@@ -1,0 +1,76 @@
+.formulario-evento {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .grupo, .grupo-principal, .periodo-evento {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .grupo-principal {
+    flex-direction: row;
+  }
+  
+  .input-medio, .input-peq, .input-grande, .input-peqMedio, .textarea {
+    padding: 10px;
+    border: 1px solid #CDD1DB;
+    border-radius: 8px;
+    background: white;
+    font-size: 16px;
+    font-family: Poppins;
+    color: #B4B8C0;
+  }
+  
+  .textarea {
+    height: 125px;
+    resize: none;
+  }
+  
+  .upload-banner {
+    width: 475px;
+    height: 177px;
+    border: 2px dashed #B4B8C0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 32px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .upload-banner:hover {
+    background-color: #F0F2F5;
+  }
+  
+  .icone-upload img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+  }
+  
+  .tipo-evento, .opcoes-evento, .opcao-evento {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .opcao-evento input[type="radio"] {
+    accent-color: #574CD5;
+  }
+  
+  .linha-endereco, .linha-endereco2 {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .linha-botao {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import IconeUpload from '../assets/images/icone-upload.svg';
+import BotaoProximo from './BotaoProximo';
 
 function FormInfoBasicas({ tipoEvento, setTipoEvento, irParaProximaAba }) {
   const [bannerUrl, setBannerUrl] = useState(null);
@@ -61,7 +62,10 @@ function FormInfoBasicas({ tipoEvento, setTipoEvento, irParaProximaAba }) {
         <h2>Sobre o evento</h2>
         <section className="grupo descricao">
           <label>
-            <textarea className="textarea" placeholder="Fale sobre seu evento..."></textarea>
+            <textarea
+              className="textarea"
+              placeholder="Fale sobre seu evento..."
+            />
           </label>
         </section>
 
@@ -128,15 +132,36 @@ function FormInfoBasicas({ tipoEvento, setTipoEvento, irParaProximaAba }) {
 
               <section className="grupo">
                 <div className="linha-endereco">
-                  <label>CEP<input type="text" className="input-peq" /></label>
-                  <label>UF<input type="text" className="input-peq" /></label>
-                  <label>Cidade<input type="text" className="input-peq" /></label>
-                  <label>Bairro<input type="text" className="input-peq" /></label>
+                  <label>
+                    CEP
+                    <input type="text" className="input-peq" />
+                  </label>
+                  <label>
+                    UF
+                    <input type="text" className="input-peq" />
+                  </label>
+                  <label>
+                    Cidade
+                    <input type="text" className="input-peq" />
+                  </label>
+                  <label>
+                    Bairro
+                    <input type="text" className="input-peq" />
+                  </label>
                 </div>
                 <div className="linha-endereco2">
-                  <label>Logradouro<input type="text" className="input-peqMedio" /></label>
-                  <label>Complemento<input type="text" className="input-peqMedio" /></label>
-                  <label>Número<input type="text" className="input-peq" /></label>
+                  <label>
+                    Logradouro
+                    <input type="text" className="input-peqMedio" />
+                  </label>
+                  <label>
+                    Complemento
+                    <input type="text" className="input-peqMedio" />
+                  </label>
+                  <label>
+                    Número
+                    <input type="text" className="input-peq" />
+                  </label>
                 </div>
               </section>
             </>
@@ -155,13 +180,7 @@ function FormInfoBasicas({ tipoEvento, setTipoEvento, irParaProximaAba }) {
         </section>
 
         <div className="linha-botao">
-          <button
-            type="button"
-            className="botao-proximo"
-            onClick={irParaProximaAba}
-          >
-            Próximo
-          </button>
+          <BotaoProximo onClick={irParaProximaAba} />
         </div>
       </form>
     </div>
