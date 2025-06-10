@@ -200,7 +200,31 @@ function FormAcessibilidades({ termoBusca, setTermoBusca, acessibilidadesSelecio
           dadosIniciais={itemEditando}
         />
       )}
+        <div className="comprovacao-acessibilidade">
+    <h2>Comprovação de Acessibilidade</h2>
+    <p className="subtitulo">
+      Para garantir a autenticidade das acessibilidades oferecidas no evento e evitar fraudes, anexe um documento oficial que comprove a acessibilidade do local.
+    </p>
+    <ul>
+      <li>Laudo Técnico de Acessibilidade emitido por um engenheiro ou arquiteto habilitado.</li>
+      <li>Certificado de Acessibilidade fornecido por órgãos públicos</li>
+      <li>Declaração de Responsabilidade assinada pelo organizador, com evidências visuais do local.</li>
+    </ul>
+    <p className="subtexto-upload">
+      <strong>Importante:</strong> Nossa equipe analisará os documentos enviados e poderá solicitar informações adicionais. <br />
+      <strong>Formatos aceitos:</strong> PDF, JPG, PNG <br />
+      <strong>Tamanho máximo:</strong> 15MB.
+    </p>
+    <div className="upload-comprovante">
+      <div className="icone-upload2">
+        <img src={IconeUpload2} alt="Ícone de upload" />
+      </div>
+      <p className="texto-upload">Clique ou arraste aqui para enviar o laudo ou comprovante</p>
+      <input type="file" className="input-comprovante" accept=".pdf,.jpg,.jpeg,.png" />
     </div>
+  </div>
+    </div>
+    
   );
 }
 
