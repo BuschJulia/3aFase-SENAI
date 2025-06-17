@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import BotaoProximo from './BotaoProximo';
 import Lupa from '../assets/images/Lupa.svg';
 import IconeAcessibilidade from '../assets/images/Acessibilidade.svg';
 import IconeAcessibilidadeAtivo from '../assets/images/AcessibilidadeRoxo.svg';
 import IconeUpload2 from '../assets/images/upload.svg';
+import EditarIconeAtivo from '../assets/images/EditarIconRoxo.svg';
 import EditarIcone from '../assets/images/EditarIcon.svg';
+import ExcluirIconeAtivo from '../assets/images/ExcluirIconRoxo.svg';
 import ExcluirIcone from '../assets/images/ExcluirIcon.svg';
 import './FormAcessibilidades.css';
 
@@ -60,21 +63,44 @@ function ModalAcessibilidadePersonalizada({ onClose, onAdicionar, dadosIniciais 
   );
 }
 
-function FormAcessibilidades({ termoBusca, setTermoBusca, acessibilidadesSelecionadas, toggleAcessibilidade }) {
+function FormAcessibilidades({ termoBusca, setTermoBusca, acessibilidadesSelecionadas, toggleAcessibilidade, irParaProximaAba }) {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [acessPersonalizadas, setAcessPersonalizadas] = useState([]);
   const [itemEditando, setItemEditando] = useState(null);
   const [personalizadosSelecionados, setPersonalizadosSelecionados] = useState([]);
+  const [bannerPreview, setBannerPreview] = useState(null);
+  const [imageOffsetY, setImageOffsetY] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startY, setStartY] = useState(0);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartY(e.clientY);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const deltaY = e.clientY - startY;
+    setStartY(e.clientY);
+    setImageOffsetY((prev) => {
+      const next = prev + deltaY;
+      return Math.max(Math.min(next, 0), -300); // permite arrastar até -300px
+    });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
 
-    //Hover acessibilidade clicada permanentemente 
-    const togglePersonalizado = (index) => {
-      setPersonalizadosSelecionados((prev) =>
-        prev.includes(index)
-          ? prev.filter((i) => i !== index)
-          : [...prev, index]
-      );
-    };
+  //Hover acessibilidade clicada permanentemente 
+  const togglePersonalizado = (index) => {
+    setPersonalizadosSelecionados((prev) =>
+      prev.includes(index)
+        ? prev.filter((i) => i !== index)
+        : [...prev, index]
+    );
+  };
 
   const opcoes = [
     { id: 1, titulo: 'Banheiro adaptado', descricao: 'Sanitários acessíveis para cadeirantes e pessoas com mobilidade reduzida.' },
@@ -105,6 +131,21 @@ function FormAcessibilidades({ termoBusca, setTermoBusca, acessibilidadesSelecio
   const deletarAcessibilidade = (index) => {
     setAcessPersonalizadas((prev) => prev.filter((_, i) => i !== index));
   };
+
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+    } else {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging]);
 
   return (
     <div className="conteudo-interno">
@@ -169,89 +210,133 @@ function FormAcessibilidades({ termoBusca, setTermoBusca, acessibilidadesSelecio
         </div>
 
         <div className="area-personalizada">
-  {acessPersonalizadas.length === 0 ? (
-    <div className="card-vazio">Nenhuma acessibilidade adicionada</div>
-  ) : (
-    <ul className="lista-personalizada">
-      {acessPersonalizadas.map((item, index) => (
-        <li key={index} className="item-personalizado">
-          <div
-            className={`opcao-acessibilidade personalizado ${personalizadosSelecionados.includes(index) ? 'selecionado' : ''}`}
-            onClick={() => togglePersonalizado(index)}
-          >
-            <div className="icone-wrapper ativo">
-              <img src={IconeAcessibilidade} alt="Ícone acessibilidade" className="icone-acess" />
-            </div>
-            <div className="texto-acessibilidade">
-              <strong className="titulo-opcao">{item.titulo}</strong>
-              <span className="descricao-opcao">{item.descricao}</span>
-            </div>
-            <div className="botoes-card">
-              <button
-                className="btn-editar"
-                title="Editar"
-                onClick={(e) => {
-                  e.stopPropagation(); // impede que clique acione seleção
-                  editarAcessibilidade(index);
-                }}
-              >
-                <img src={EditarIcone} alt="Editar" />
-              </button>
-              <button
-                className="btn-deletar"
-                title="Excluir"
-                onClick={(e) => {
-                  e.stopPropagation(); 
-                  deletarAcessibilidade(index);
-                }}
-              >
-                <img src={ExcluirIcone} alt="Excluir" />
-              </button>
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
+          {acessPersonalizadas.length === 0 ? (
+            <div className="card-vazio">Nenhuma acessibilidade adicionada</div>
+          ) : (
+            <ul className="lista-personalizada">
+              {acessPersonalizadas.map((item, index) => (
+                <li key={index} className="item-personalizado">
+                  <div
+                    className={`opcao-acessibilidade personalizado ${personalizadosSelecionados.includes(index) ? 'selecionado' : ''}`}
+                    onClick={() => togglePersonalizado(index)}
+                  >
+                    <div className="icone-wrapper ativo">
+                      <img
+                        src={personalizadosSelecionados.includes(index) ? IconeAcessibilidadeAtivo : IconeAcessibilidade}
+                        alt="Ícone acessibilidade"
+                        className="icone-acess"
+                      />
+                    </div>
+                    <div className="texto-acessibilidade">
+                      <strong className="titulo-opcao">{item.titulo}</strong>
+                      <span className="descricao-opcao">{item.descricao}</span>
+                    </div>
+                    <div className="botoes-card">
+                      <button
+                        className="btn-editar"
+                        title="Editar"
+                        onClick={(e) => {
+                          e.stopPropagation(); // impede que clique acione seleção
+                          editarAcessibilidade(index);
+                        }}
+                      >
+                        <img
+                          src={personalizadosSelecionados.includes(index) ? EditarIconeAtivo : EditarIcone}
+                          alt="Editar"
+                        />
+                      </button>
+                      <button
+                        className="btn-deletar"
+                        title="Excluir"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deletarAcessibilidade(index);
+                        }}
+                      >
+                        <img
+                          src={personalizadosSelecionados.includes(index) ? ExcluirIconeAtivo : ExcluirIcone}
+                          alt="Excluir"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </section >
 
-    { mostrarModal && (
-      <ModalAcessibilidadePersonalizada
-        onClose={() => {
-          setMostrarModal(false);
-          setItemEditando(null);
-        }}
-        onAdicionar={adicionarOuEditarAcessibilidadePersonalizada}
-        dadosIniciais={itemEditando}
-      />
-    )
-}
-<div className="comprovacao-acessibilidade">
-  <h2>Comprovação de Acessibilidade</h2>
-  <p className="subtitulo">
-    Para garantir a autenticidade das acessibilidades oferecidas no evento e evitar fraudes, anexe um documento oficial que comprove a acessibilidade do local.
-  </p>
-  <ul>
-    <li>Laudo Técnico de Acessibilidade emitido por um engenheiro ou arquiteto habilitado.</li>
-    <li>Certificado de Acessibilidade fornecido por órgãos públicos</li>
-    <li>Declaração de Responsabilidade assinada pelo organizador, com evidências visuais do local.</li>
-  </ul>
-  <p className="subtexto-upload">
-    <strong>Importante:</strong> Nossa equipe analisará os documentos enviados e poderá solicitar informações adicionais. <br />
-    <strong>Formatos aceitos:</strong> PDF, JPG, PNG <br />
-    <strong>Tamanho máximo:</strong> 15MB.
-  </p>
-  <div className="upload-comprovante">
-    <div className="icone-upload2">
-      <img src={IconeUpload2} alt="Ícone de upload" />
-    </div>
-    <p className="texto-upload">Clique ou arraste aqui para enviar o laudo ou comprovante</p>
-    <input type="file" className="input-comprovante" accept=".pdf,.jpg,.jpeg,.png" />
-  </div>
-</div>
+      {mostrarModal && (
+        <ModalAcessibilidadePersonalizada
+          onClose={() => {
+            setMostrarModal(false);
+            setItemEditando(null);
+          }}
+          onAdicionar={adicionarOuEditarAcessibilidadePersonalizada}
+          dadosIniciais={itemEditando}
+        />
+      )
+      }
+      <div className="comprovacao-acessibilidade">
+        <h2>Comprovação de Acessibilidade</h2>
+        <p className="subtitulo">
+          Para garantir a autenticidade das acessibilidades oferecidas no evento e evitar fraudes, anexe um documento oficial que comprove a acessibilidade do local.
+        </p>
+        <ul>
+          <li>Laudo Técnico de Acessibilidade emitido por um engenheiro ou arquiteto habilitado.</li>
+          <li>Certificado de Acessibilidade fornecido por órgãos públicos</li>
+          <li>Declaração de Responsabilidade assinada pelo organizador, com evidências visuais do local.</li>
+        </ul>
+        <p className="subtexto-upload">
+          <strong>Importante:</strong> Nossa equipe analisará os documentos enviados e poderá solicitar informações adicionais. <br />
+          <strong>Formatos aceitos:</strong> PDF, JPG, PNG <br />
+          <strong>Tamanho máximo:</strong> 15MB.
+        </p>
+
+        <div className="upload-comprovante">
+          {bannerPreview ? (
+            <div
+              className="preview-banner"
+              onMouseDown={handleMouseDown}
+            >
+              <img
+                src={bannerPreview}
+                alt="Prévia do banner"
+                style={{ transform: `translateY(${imageOffsetY}px)` }}
+              />
+            </div>
+          ) : (
+            <>
+              <div className="icone-upload2">
+                <img src={IconeUpload2} alt="Ícone de upload" />
+              </div>
+              <p className="texto-upload">Clique ou arraste aqui para enviar o laudo ou comprovante</p>
+            </>
+          )}
+          <input
+            type="file"
+            className="input-comprovante"
+            accept=".jpg,.jpeg,.png"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (file && file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                  setBannerPreview(reader.result);
+                };
+                reader.readAsDataURL(file);
+              }
+            }}
+          />
+
+        </div>
+        <div className="linha-botao">
+          <BotaoProximo onClick={irParaProximaAba} />
+        </div>
+      </div>
     </div >
-    
+
   );
 }
 

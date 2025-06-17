@@ -1,28 +1,17 @@
 import React, { useState } from 'react';
 import { FiEdit, FiTrash } from 'react-icons/fi';
-import './FormIngressos.css'; 
+import './FormIngressos.css';
 
-function FormIngressos() {
-  const [ingressos, setIngressos] = useState([
-    { nome: 'Ingresso VIP', valor: 78.9, vendidos: 0, total: 100, taxa: 28.65, visivel: true },
-    { nome: 'Ingresso VIP', valor: 78.9, vendidos: 10, total: 100, taxa: 28.65, visivel: false },
-    { nome: 'Ingresso VIP', valor: 78.9, vendidos: 77, total: 100, taxa: 28.65, visivel: true },
-  ]);
-
-  const toggleVisibilidade = (index) => {
-    const novos = [...ingressos];
-    novos[index].visivel = !novos[index].visivel;
-    setIngressos(novos);
-  };
+function FormIngressos({ ingressos, setIngressos, toggleVisibilidade, irParaProximaAba, irParaAbaAnterior }) {
 
   return (
     <div className="form-ingressos">
       <div className="cabecalho-ingressos">
         <h2>Que tipo de ingresso você deseja criar?</h2>
-        <div className="botoes-tipo-ingresso">
-          <button className="botao-pago">+ Ingresso Pago</button>
-          <button className="botao-gratuito">+ Ingresso Gratuito</button>
-        </div>
+      </div>
+      <div className="botoes-tipo-ingresso">
+        <button className="botao-pago">+ Ingresso Pago</button>
+        <button className="botao-gratuito">+ Ingresso Gratuito</button>
       </div>
 
       <table className="tabela-ingressos">
@@ -76,8 +65,8 @@ function FormIngressos() {
       </table>
 
       <div className="navegacao-ingressos">
-        <button className="botao-anterior amarelo">Anterior</button>
-        <button className="botao-proximo roxo">Próximo</button>
+        <button className="botao-anterior amarelo" onClick={irParaAbaAnterior}>Anterior</button>
+        <button className="botao-proximo roxo" onClick={irParaProximaAba}>Próximo</button>
       </div>
     </div>
   );

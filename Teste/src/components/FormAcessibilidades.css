@@ -170,3 +170,21 @@
     width: 97.75%;
     max-width: none;
   }
+
+.preview-banner {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: grab;
+}
+
+.preview-banner img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  user-select: none;
+}

@@ -31,11 +31,32 @@ function App() {
     );
   }
 
+  const [ingressos, setIngressos] = useState([
+    { nome: 'Ingresso VIP', valor: 78.9, vendidos: 0, total: 100, taxa: 28.65, visivel: true },
+    { nome: 'Ingresso VIP', valor: 78.9, vendidos: 10, total: 100, taxa: 28.65, visivel: false },
+    { nome: 'Ingresso VIP', valor: 78.9, vendidos: 77, total: 100, taxa: 28.65, visivel: true },
+  ]);
+
+  function toggleVisibilidadeIngresso(index) {
+    const novos = [...ingressos];
+    novos[index].visivel = !novos[index].visivel;
+    setIngressos(novos);
+  }
+
   function adicionarAcessibilidadePersonalizada(e) {
     e.preventDefault();
     if (novaAcessibilidade.trim() !== '') {
       setAcessPersonalizadas([...acessPersonalizadas, novaAcessibilidade.trim()]);
       setNovaAcessibilidade('');
+    }
+  }
+
+  function irParaAbaAnterior() {
+    const ordemAbas = ['Informações Básicas', 'Acessibilidade', 'Ingressos', 'Pré-visualização'];
+    const indiceAtual = ordemAbas.indexOf(abaAtiva);
+    const anterior = ordemAbas[indiceAtual - 1];
+    if (anterior) {
+      setAbaAtiva(anterior);
     }
   }
 
@@ -74,11 +95,30 @@ function App() {
               toggleAcessibilidade={toggleAcessibilidade}
               acessPersonalizadas={acessPersonalizadas}
               adicionarAcessibilidadePersonalizada={adicionarAcessibilidadePersonalizada}
+              irParaProximaAba={irParaProximaAba}
             />
           )}
 
-          {abaAtiva === 'Ingressos' && <FormIngressos />}
-          {abaAtiva === 'Pré-visualização' && <FormPreVisualizacao />}
+
+          {abaAtiva === 'Ingressos' && (
+            <FormIngressos
+              ingressos={ingressos}
+              setIngressos={setIngressos}
+              toggleVisibilidade={toggleVisibilidadeIngresso}
+              irParaProximaAba={irParaProximaAba}
+              irParaAbaAnterior={irParaAbaAnterior}
+            />
+          )}
+
+          {abaAtiva === 'Pré-visualização' && (
+            <FormPreVisualizacao
+              tipoEvento={tipoEvento}
+              ingressos={ingressos}
+              acessibilidadesSelecionadas={acessibilidadesSelecionadas}
+              acessPersonalizadas={acessPersonalizadas}
+              irParaAbaAnterior={irParaAbaAnterior}
+            />
+          )}
         </div>
       </main>
     </div>

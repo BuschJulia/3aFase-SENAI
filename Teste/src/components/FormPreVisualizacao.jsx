@@ -1,7 +1,7 @@
 import React from 'react';
-import './FormPreVisualizacao.css'; 
+import './FormPreVisualizacao.css';
 
-function FormPreVisualizacao() {
+function FormPreVisualizacao({ tipoEvento, ingressos, acessibilidadesSelecionadas, acessPersonalizadas, irParaAbaAnterior }) {
   return (
     <div className="form-previsualizacao">
       <div className="banner-evento" />
@@ -38,7 +38,7 @@ function FormPreVisualizacao() {
             </p>
           </div>
 
-          <button className="botao-anterior amarelo">Anterior</button>
+          <button className="botao-anterior amarelo" onClick={irParaAbaAnterior}>Anterior</button>
         </div>
 
         <div className="col-direita">
@@ -54,5 +54,6 @@ function FormPreVisualizacao() {
     </div>
   );
 }
+
 
 export default FormPreVisualizacao;
